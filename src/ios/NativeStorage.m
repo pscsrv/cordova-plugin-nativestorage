@@ -62,7 +62,7 @@
 {
 	[self.commandDelegate runInBackground:^{
 		CDVPluginResult* pluginResult = nil;
-		[[self getUserDefault] removePersistentDomainForName:[[NSBundle mainBundle] bundleIdentifier]];
+		[[self getUserDefault] removePersistentDomainForName:_suiteName != nil ? _suiteName : [[NSBundle mainBundle] bundleIdentifier]];
 		BOOL success = [[self getUserDefault] synchronize];
 		if(success) pluginResult = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK];
 		else pluginResult = [CDVPluginResult resultWithStatus: CDVCommandStatus_ERROR messageAsString:@"Clear has failed"];
